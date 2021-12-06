@@ -18,6 +18,8 @@ import SigninScreen from './screens/SigninScreen';
 import ProductListScreen from './screens/ProductListScreen';
 import ProductEditScreen from './screens/ProductEditScreen';
 import OrderListScreen from './screens/OrderListScreen';
+import UserListScreen from './screens/UserListScreen';
+import UserEditScreen from './screens/UserEditScreen';
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -70,6 +72,24 @@ function App() {
                   <Link to="/signin">Sign In</Link>
                 )
             }
+
+            {userInfo && userInfo.isSeller && (
+              <div className="dropdown">
+                <Link to='#admin'>
+                  Seller <i className="fa fa-caret-down"></i>
+                </Link>
+                <ul className="dropdown-content">
+                  <li>
+                    <Link to="/productlist/seller">Product</Link>
+                  </li>
+                  <li>
+                    <Link to="/orderlist/seller">Orders</Link>
+                  </li>
+                </ul>
+              </div>
+            )}
+
+
             {userInfo && userInfo.isAdmin && (
               <div className="dropdown">
                 <Link to='#admin'>
@@ -111,6 +131,8 @@ function App() {
           <PriavteRoute path="/profile" component={ProfileScreen}></PriavteRoute>
           <AdminRoute path="/productlist" component={ProductListScreen}></AdminRoute>
           <AdminRoute path="/orderlist" component={OrderListScreen}></AdminRoute>
+          <AdminRoute path="/userlist" component={UserListScreen}></AdminRoute>
+          <AdminRoute path="/user/:id/edit" component={UserEditScreen}></AdminRoute>
           <Route path="/" component={HomeScreen} exact></Route>
         </main>
         <footer className="row center">All right reserved</footer>
