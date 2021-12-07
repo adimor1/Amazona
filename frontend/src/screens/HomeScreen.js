@@ -14,7 +14,7 @@ export default function HomeScreen() {
   axios.defaults.baseURL = 'http://localhost:5000';
 
   useEffect(() => {
-    dispatch(listProducts()); 
+    dispatch(listProducts({})); 
   }, [dispatch]);
   return (
     <div>

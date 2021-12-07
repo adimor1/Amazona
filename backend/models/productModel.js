@@ -1,8 +1,8 @@
-import moongoose from 'mongoose';
+import mongoose from 'mongoose';
 
-const productSchema = new moongoose.Schema({
+const productSchema = new mongoose.Schema({
     name: { type: String, required: true, unique: true },
-    seller: {type: moongoose.Schema.Types.ObjectId},
+    seller: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
     image: { type: String, required: true },
     brand: { type: String, required: true },
     category: { type: String, required: true },
@@ -16,6 +16,6 @@ const productSchema = new moongoose.Schema({
         timestamps: true,
     });
 
-    const Product = moongoose.model('Product', productSchema); 
+    const Product = mongoose.model('Product', productSchema); 
 
     export default Product;
