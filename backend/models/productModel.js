@@ -2,6 +2,7 @@ import moongoose from 'mongoose';
 
 const productSchema = new moongoose.Schema({
     name: { type: String, required: true, unique: true },
+    seller: {type: moongoose.Schema.Types.ObjectId},
     image: { type: String, required: true },
     brand: { type: String, required: true },
     category: { type: String, required: true },
