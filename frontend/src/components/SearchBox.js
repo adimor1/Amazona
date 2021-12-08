@@ -9,7 +9,7 @@ export default function SearchBox(props) {
     }
 
     return (
-        <form class="search" onSubmit={sumbitHandler}>
+        <form className="search" onSubmit={sumbitHandler}>
             <div className="row">
                 <input type="text" name="q" id="q" 
                 onChange={(e)=>setName(e.target.value)}>    
