@@ -282,3 +282,15 @@ img.large {
 .carousel .slide {
   background: #000;
   }
+
+  .seatch button{
+    border-radius: 0 0.5rem 0.5rem 0;
+    border-right: none;
+    margin-right: 0.5rem;
+  }
+
+  .seatch input{
+    border-radius: 0.5rem 0 0 0.5rem;
+    border-right: none;
+    margin-left: 0.5rem;
+  }

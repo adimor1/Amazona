@@ -22,6 +22,8 @@ import UserListScreen from './screens/UserListScreen';
 import UserEditScreen from './screens/UserEditScreen';
 import SellerRoute from './components/SellerRoute';
 import SellerScreen from './screens/SellerScreen';
+import SearchBox from './components/SearchBox';
+import SearchScreen from './screens/SearchScreen';
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -41,6 +43,11 @@ function App() {
             <Link className="brand" to="/">
               amazona
             </Link>
+          </div>
+          <div>
+            <Route
+             render={({history})=> <SearchBox history={history}></SearchBox>}
+             ></Route>
           </div>
           <div>
             <Link to="/cart">
@@ -139,6 +146,7 @@ function App() {
           <Route path="/" component={HomeScreen} exact></Route>
           <SellerRoute path="/productlist/seller" component={ProductListScreen}></SellerRoute>
           <SellerRoute path="/orderlist/seller" component={OrderListScreen}></SellerRoute>
+          <Route path="/search/name/:name?" component={SearchScreen}></Route>
         </main>
         <footer className="row center">All right reserved</footer>
       </div>
