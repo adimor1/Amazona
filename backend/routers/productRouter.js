@@ -9,28 +9,35 @@ const productRouter = express.Router();
 productRouter.get(
     '/',
     expressAsyncHandler(async (req, res) => {
-      const name = req.query.name || '';
-      const category = req.query.category || '';
-      const seller = req.query.seller || '';
-      const nameFilter = name ? { name: { $regex: name, $options: 'i' } } : {};
-      const sellerFilter = seller ? { seller } : {};
-      const categoryFilter = category ? { category } : {};
-      const products = await Product.find({
-        ...sellerFilter,
-        ...nameFilter,
-        ...categoryFilter,
-      }).populate('seller', 'seller.name seller.logo');
-      res.send(products);
+        const name = req.query.name || '';
+        const category = req.query.category || '';
+        const seller = req.query.seller || '';
+        const min = req.query.min && Number(req.query.min) !== 0 ? Number(req.query.min) : 0;
+        const max = req.query.max && Number(req.query.max) !== 0 ? Number(req.query.max) : 0;
+        const rating = req.query.rating && Number(req.query.rating) !== 0 ? Number(req.query.rating) : 0;
+        const nameFilter = name ? { name: { $regex: name, $options: 'i' } } : {};
+        const sellerFilter = seller ? { seller } : {};
+        const categoryFilter = category ? { category } : {};
+        const priceFilter = min && max ? { price: { $gte: min, $lte: max } } : {};
+        const ratingFilter = rating ? { rating: {$gte: rating }}: {};
+const products = await Product.find({
+    ...sellerFilter,
+    ...nameFilter,
+    ...categoryFilter,
+    ...priceFilter,
+    ...ratingFilter
+}).populate('seller', 'seller.name seller.logo');
+res.send(products);
     })
-  );
-  
-  productRouter.get(
+);
+
+productRouter.get(
     '/categories',
     expressAsyncHandler(async (req, res) => {
-      const categories = await Product.find().distinct('category');
-      res.send(categories);
+        const categories = await Product.find().distinct('category');
+        res.send(categories);
     })
-  );
+);
 
 productRouter.get(
     '/seed',
