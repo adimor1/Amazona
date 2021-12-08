@@ -14,7 +14,8 @@ export default function SearchScreen(props) {
         category = 'all',
         min = 0,
         max = 0,
-        rating = 0
+        rating = 0,
+        order='newest'
     } = useParams();
     const dispatch = useDispatch();
     const productList = useSelector((state) => state.productList);
@@ -33,18 +34,20 @@ export default function SearchScreen(props) {
                 category: category !== 'all' ? category : '',
                 min,
                 max,
-                rating
+                rating,
+                order
             })
         );
-    }, [category, dispatch, max, min, name, rating]);
+    }, [category, dispatch, max, min, name, rating, order]);
 
     const getFilterUrl = (filter) => {
         const filterCategory = filter.category || category;
         const filterName = filter.name || name;
+        const sortOrder = filter.order || order;
         const filterMin = filter.min ? filter.min : filter.min === 0 ? 0 : min;
         const filterMax = filter.max ? filter.max : filter.max === 0 ? 0 : max;
         const filterRating = filter.rating || name;
-        return `/search/category/${filterCategory}/name/${filterName}/min/${filterMin}/max/${filterMax}/rating/${filterRating}`;
+        return `/search/category/${filterCategory}/name/${filterName}/min/${filterMin}/max/${filterMax}/rating/${filterRating}/order/${sortOrder}`;
     };
     return (
         <div>
@@ -56,6 +59,21 @@ export default function SearchScreen(props) {
                 ) : (
                     <div>{products.length} Results</div>
                 )}
+                <div>
+                    Sort by {' '}
+                    <select value={order}
+                        onChange ={e=>{
+                            props.history.push(getFilterUrl({
+                                order: e.target.value
+                            }))
+                        }}
+                    >
+                        <option value="newest">Newest Arrivals</option>
+                        <option value="lowest">Price low to high</option>
+                        <option value="hightest">Price high to low</option>
+                        <option value="torated">Avg customer reviews</option>
+                    </select>
+                </div>
             </div>
             <div className="row top">
                 <div className="col-1">

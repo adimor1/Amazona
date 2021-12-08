@@ -199,7 +199,7 @@ function App() {
           <Route path="/search/name/:name?" component={SearchScreen} exact></Route>
           <Route path="/search/category/:category?" component={SearchScreen} exact></Route>
           <Route path="/search/category/:category?/name/:name" component={SearchScreen} exact></Route>
-          <Route path="/search/category/:category?/name/:name/min/:min/max/:max/rating/:rating" component={SearchScreen} exact></Route>        
+          <Route path="/search/category/:category?/name/:name/min/:min/max/:max/rating/:rating/order/:order" component={SearchScreen} exact></Route>        
           </main>
         <footer className="row center">All right reserved</footer>
       </div>
