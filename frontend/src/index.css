@@ -276,5 +276,9 @@ img.large {
 }
 
 .carousel .slide img{
-  max-width: 30rem;
+  max-width: 20rem;
 }
+
+.carousel .slide {
+  background: #000;
+  }
