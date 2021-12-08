@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+import 'react-responsive-carousel/lib/styles/carousel.min.css'; 
+import { Carousel } from 'react-responsive-carousel';
 import axios from 'axios';
 import Product from '../components/Product';
 import LoadingBox from '../components/LoadingBox';
