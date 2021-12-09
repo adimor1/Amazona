@@ -1,4 +1,4 @@
-import { USER_DELETE_FAIL, USER_DELETE_REQUEST, USER_DELETE_RESET, USER_DELETE_SUCCESS, USER_DETAILS_FAIL, USER_DETAILS_REQUEST, USER_DETAILS_RESET, USER_DETAILS_SUCCESS, USER_LIST_FAIL, USER_LIST_REQUEST, USER_LIST_SUCCESS, USER_REGISTER_FAIL, 
+import { USER_ADDRESS_MAP_CONFIRM, USER_DELETE_FAIL, USER_DELETE_REQUEST, USER_DELETE_RESET, USER_DELETE_SUCCESS, USER_DETAILS_FAIL, USER_DETAILS_REQUEST, USER_DETAILS_RESET, USER_DETAILS_SUCCESS, USER_LIST_FAIL, USER_LIST_REQUEST, USER_LIST_SUCCESS, USER_REGISTER_FAIL, 
     USER_REGISTER_REQUEST, 
     USER_REGISTER_SUCCESS, 
     USER_SIGNIN_FAIL, 
@@ -131,3 +131,12 @@ export const userTopSellerListReducer = (state ={loading:true}, action)=>{
             return state; 
     }
 };
+
+export const userAddressMapReducer = (state = {}, action) => {
+    switch (action.type) {
+      case USER_ADDRESS_MAP_CONFIRM:
+        return { address: action.payload };
+      default:
+        return state;
+    }
+  };

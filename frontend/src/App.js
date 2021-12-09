@@ -27,6 +27,8 @@ import SearchScreen from './screens/SearchScreen';
 import { listProductsCategories } from './actions/productActions';
 import MessageBox from './components/MessageBox';
 import LoadingBox from './components/LoadingBox';
+import MapScreen from './screens/MapScreen';
+import PrivateRoute from './components/PrivateRoute';
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -199,7 +201,8 @@ function App() {
           <Route path="/search/name/:name?" component={SearchScreen} exact></Route>
           <Route path="/search/category/:category?" component={SearchScreen} exact></Route>
           <Route path="/search/category/:category?/name/:name" component={SearchScreen} exact></Route>
-          <Route path="/search/category/:category?/name/:name/min/:min/max/:max/rating/:rating/order/:order" component={SearchScreen} exact></Route>        
+          <Route path="/search/category/:category?/name/:name/min/:min/max/:max/rating/:rating/order/:order" component={SearchScreen} exact></Route> 
+          <PrivateRoute path="/map" component={MapScreen}></PrivateRoute>     
           </main>
         <footer className="row center">All right reserved</footer>
       </div>
